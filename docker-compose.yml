@@ -10,7 +10,8 @@ services:
     # - Build image from github directly
     #build: http://github.com/denverquane/automuteus.git
 
-    restart: always
+    # restart: always
+    restart: unless-stopped
     ports:
       # 5000 is the default service port
       # Format is HostPort:ContainerPort
@@ -43,7 +44,8 @@ services:
       # See sample.env for details, but in general, match the GALACTUS_EXTERNAL_PORT w/ the GALACTUS_HOST's port
       - ${GALACTUS_EXTERNAL_PORT:-8123}:${BROKER_PORT}
     image: automuteus/galactus:${GALACTUS_TAG:?err}
-    restart: always
+    # restart: always
+    restart: unless-stopped
     environment:
       # Do **NOT** change these
       - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN:?err}
@@ -55,13 +57,15 @@ services:
 
   redis:
     image: redis:alpine
-    restart: always
+    # restart: always
+    restart: unless-stopped
     volumes:
       - "redis-data:/data"
 
   postgres:
     image: postgres:12-alpine
-    restart: always
+    # restart: always
+    restart: unless-stopped
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASS}
