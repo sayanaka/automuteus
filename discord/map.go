@@ -22,7 +22,7 @@ func (m *MapItem) String() string {
 	return m.Name
 }
 
-const BaseMapURL = "https://github.com/denverquane/automuteus/blob/master/assets/maps/"
+const BaseMapURL = "https://github.com/sayanaka/automuteus/blob/master/assets/maps/"
 
 func NewMapItem(name string) (*MapItem, error) {
 	switch strings.ToLower(name) {
@@ -45,12 +45,12 @@ func NewMapItem(name string) (*MapItem, error) {
 		log.Println(err)
 	}
 
-	simpleURL, err := base.Parse(name + ".png?raw=true")
+	simpleURL, err := base.Parse(name + "_ja.png?raw=true")
 	if err != nil {
 		log.Println(err)
 	}
 
-	detailedURL, err := base.Parse(name + "_detailed.png?raw=true")
+	detailedURL, err := base.Parse(name + "_ja_detailed.png?raw=true")
 	if err != nil {
 		log.Println(err)
 	}
